@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.goldcn.test.dao.QuotationMin5Mapper" >
+  <resultMap id="BaseResultMap" type="com.goldcn.test.model.QuotationMin5" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="market" property="market" jdbcType="INTEGER" />
+    <result column="symbol" property="symbol" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="open" property="open" jdbcType="DECIMAL" />
+    <result column="high" property="high" jdbcType="DECIMAL" />
+    <result column="close" property="close" jdbcType="DECIMAL" />
+    <result column="low" property="low" jdbcType="DECIMAL" />
+    <result column="volume" property="volume" jdbcType="DECIMAL" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, market, symbol, name, time, open, high, close, low, volume, amount, count, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from quotation_min5
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from quotation_min5
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.goldcn.test.model.QuotationMin5" >
+    insert into quotation_min5 (id, market, symbol, 
+      name, time, open, 
+      high, close, low, volume, 
+      amount, count, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{market,jdbcType=INTEGER}, #{symbol,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{open,jdbcType=DECIMAL}, 
+      #{high,jdbcType=DECIMAL}, #{close,jdbcType=DECIMAL}, #{low,jdbcType=DECIMAL}, #{volume,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{count,jdbcType=INTEGER}, #{update_time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.goldcn.test.model.QuotationMin5" >
+    insert into quotation_min5
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="market != null" >
+        market,
+      </if>
+      <if test="symbol != null" >
+        symbol,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="close != null" >
+        close,
+      </if>
+      <if test="low != null" >
+        low,
+      </if>
+      <if test="volume != null" >
+        volume,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="update_time != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="market != null" >
+        #{market,jdbcType=INTEGER},
+      </if>
+      <if test="symbol != null" >
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="close != null" >
+        #{close,jdbcType=DECIMAL},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null" >
+        #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.goldcn.test.model.QuotationMin5" >
+    update quotation_min5
+    <set >
+      <if test="market != null" >
+        market = #{market,jdbcType=INTEGER},
+      </if>
+      <if test="symbol != null" >
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="open != null" >
+        open = #{open,jdbcType=DECIMAL},
+      </if>
+      <if test="high != null" >
+        high = #{high,jdbcType=DECIMAL},
+      </if>
+      <if test="close != null" >
+        close = #{close,jdbcType=DECIMAL},
+      </if>
+      <if test="low != null" >
+        low = #{low,jdbcType=DECIMAL},
+      </if>
+      <if test="volume != null" >
+        volume = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null" >
+        update_time = #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.goldcn.test.model.QuotationMin5" >
+    update quotation_min5
+    set market = #{market,jdbcType=INTEGER},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      open = #{open,jdbcType=DECIMAL},
+      high = #{high,jdbcType=DECIMAL},
+      close = #{close,jdbcType=DECIMAL},
+      low = #{low,jdbcType=DECIMAL},
+      volume = #{volume,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      count = #{count,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
