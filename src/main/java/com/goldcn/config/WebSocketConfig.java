@@ -1,4 +1,4 @@
-package com.goldcn.service;
+package com.goldcn.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -12,9 +12,10 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/endpointWisely").withSockJS(); //2
+        registry.addEndpoint("/endpointChat").withSockJS();//1
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic");//3
+        registry.enableSimpleBroker("/queue","/topic"); //2
     }
 }

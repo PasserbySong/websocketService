@@ -1,4 +1,4 @@
-package com.goldcn.service;
+package com.goldcn.vo;
 
 /**
  * Created by Administrator on 2017/5/4.
