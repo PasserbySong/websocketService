@@ -15,9 +15,11 @@ public class HandleService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public HandleService() {
-    }
-
+    /**
+     * 触发消息推送
+     * @param msgType
+     * @return
+     */
     public Object triggerPush(Integer msgType) {
         String key = "msgType_" + msgType;
         WiselyResponse msg;
@@ -35,12 +37,10 @@ public class HandleService {
                 return "error";
         }
 
-        Set names = this.redisTemplate.opsForSet().members(key);
-        Iterator var5 = names.iterator();
+        Set<String> names = this.redisTemplate.opsForSet().members(key);
 
-        while(var5.hasNext()) {
-            String name = (String)var5.next();
-            this.messagingTemplate.convertAndSendToUser(name, "/queue/notifications", msg);
+        for(String name:names){
+            messagingTemplate.convertAndSendToUser(name, "/queue/notifications", msg);
         }
 
         return "success";
@@ -48,6 +48,6 @@ public class HandleService {
 
     public void setupPushMsgType(String name, String msgType) {
         String key = "msgType_" + msgType;
-        this.redisTemplate.opsForSet().add(key, new Object[]{name});
+        redisTemplate.opsForSet().add(key, new Object[]{name});
     }
 }
