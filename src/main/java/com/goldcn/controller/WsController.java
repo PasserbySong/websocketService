@@ -21,12 +21,23 @@ public class WsController {
     @Autowired
     private HandleService handleService;
 
+    /**
+     * 推送消息给订阅客户端
+     * @param message
+     * @return
+     * @throws Exception
+     */
     @MessageMapping("/welcome")
     @SendTo("/topic/getResponse")
     public WiselyResponse say(WiselyMessage message) throws Exception {
         return new WiselyResponse("Welcome, " + message.getName() + "!");
     }
 
+    /**
+     * 客户端发送消息类型 请求响应相应内容
+     * @param principal
+     * @param msgType
+     */
     @MessageMapping("/chat")
     public void handleChat(Principal principal, String msgType) {
         handleService.setupPushMsgType(principal.getName(), msgType);

@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/","/home","/trigger/**")
+                .authorizeRequests().antMatchers("/","/home","/trigger/**","/rabbitmq/**")
                 .permitAll()//1根路径和/login路径不拦截
                 .anyRequest().authenticated()
                 .and()

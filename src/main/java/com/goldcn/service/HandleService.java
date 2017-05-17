@@ -46,6 +46,37 @@ public class HandleService {
         return "success";
     }
 
+    /**
+     * 触发消息推送
+     * @param msgType
+     * @return
+     */
+    public Object triggerPush(Integer msgType,String content) {
+        String key = "msgType_" + msgType;
+        WiselyResponse msg;
+        switch(msgType.intValue()) {
+            case 0:
+                msg = new WiselyResponse(content);
+                break;
+            case 1:
+                msg = new WiselyResponse(content);
+                break;
+            case 2:
+                msg = new WiselyResponse(content);
+                break;
+            default:
+                return "error";
+        }
+
+        Set<String> names = this.redisTemplate.opsForSet().members(key);
+
+        for(String name:names){
+            messagingTemplate.convertAndSendToUser(name, "/queue/notifications", msg);
+        }
+
+        return "success";
+    }
+
     public void setupPushMsgType(String name, String msgType) {
         String key = "msgType_" + msgType;
         redisTemplate.opsForSet().add(key, new Object[]{name});
